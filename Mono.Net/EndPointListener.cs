@@ -29,8 +29,6 @@
 
 #if SECURITY_DEP
 
-extern alias MonoSecurity;
-
 using System;
 using System.IO;
 using System.Net;
@@ -40,7 +38,6 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
-using MonoSecurity::Mono.Security.Authenticode;
 
 namespace Mono.Net {
 	sealed class EndPointListener
@@ -76,8 +73,10 @@ namespace Mono.Net {
 
 		void LoadCertificateAndKey (IPAddress addr, int port)
 		{
+			throw new NotImplementedException();
+
 			// Actually load the certificate
-			try {
+			/*try {
 				string dirname = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
 				string path = Path.Combine (dirname, ".mono");
 				path = Path.Combine (path, "httplistener");
@@ -91,7 +90,7 @@ namespace Mono.Net {
 				key = PrivateKey.CreateFromFile (pvk_file).RSA;
 			} catch {
 				// ignore errors
-			}
+			}*/
 		}
 
 		static void OnAccept (object sender, EventArgs e)

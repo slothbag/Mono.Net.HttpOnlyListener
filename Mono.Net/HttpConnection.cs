@@ -29,8 +29,6 @@
 
 #if SECURITY_DEP
 
-extern alias MonoSecurity;
-
 using System;
 using System.IO;
 using System.Net;
@@ -40,7 +38,6 @@ using System.Text;
 using System.Threading;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using MonoSecurity::Mono.Security.Protocol.Tls;
 
 namespace Mono.Net {
 	sealed class HttpConnection
@@ -78,10 +75,11 @@ namespace Mono.Net {
 			if (secure == false) {
 				stream = new NetworkStream (sock, false);
 			} else {
-				SslServerStream ssl_stream = new SslServerStream (new NetworkStream (sock, false), cert, false, true, false);
+				throw new NotImplementedException();
+				/*SslServerStream ssl_stream = new SslServerStream (new NetworkStream (sock, false), cert, false, true, false);
 				ssl_stream.PrivateKeyCertSelectionDelegate += OnPVKSelection;
 				ssl_stream.ClientCertValidationDelegate += OnClientCertificateValidation;
-				stream = ssl_stream;
+				stream = ssl_stream;*/
 			}
 			timer = new Timer (OnTimeout, null, Timeout.Infinite, Timeout.Infinite);
 			Init ();
